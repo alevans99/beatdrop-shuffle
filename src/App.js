@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import LandingPage from './components/pages/LandingPage'
 import cityBackground from './assets/city-background'
+import MenuPage from './components/pages/MenuPage'
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
           <Route
             path='/'
             element={<LandingPage/>}
+          />
+          <Route
+            path='/menu'
+            element={<MenuPage/>}
           />
         </Routes>
       </div>

@@ -2,7 +2,11 @@ import React from 'react'
 import '../../styles/LandingPage.css'
 import leftImage from '../../assets/char_select_fox.png'
 import rightImage from '../../assets/char_select_penguin_flipped.png'
+import { useNavigate } from 'react-router-dom'
+
 function LandingPage() {
+  const navigate = useNavigate()
+
   return (
     <div id="LandingPage" className="LandingPage" >
       <div className='landing-container'>
@@ -19,7 +23,9 @@ function LandingPage() {
 
       </div>
       <div className='landing-button-container'>
-        <button className='landing-start-button'>START</button>
+        <button onClick={() => {
+          return navigate('/menu')
+        }} className='landing-start-button'>START</button>
       </div>
     </div>
   )
