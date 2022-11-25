@@ -1,0 +1,55 @@
+#LandingPage {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+#LandingPage h1 {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    font-weight: 600;
+    font-size: 12vw;
+}
+
+#LandingPage header {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main-title-1 {
+    color: #000;
+}
+
+#main-title-2 {
+    color: #fc1681;
+}
+
+.landing-image-left,
+.landing-image-right {
+    height: 30vh;
+    padding: 20px;
+}
+
+.landing-image-container-left {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+}
+
+.landing-image-container-right {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+}
