@@ -22,7 +22,7 @@ module.exports = {
     rules: [
       //Use Babel to compile JS / JSX
       {
-        test: /\.?js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -34,16 +34,20 @@ module.exports = {
       //Loaders for CSS
       {
         test: /\.css$/i,
+        exclude: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
       //Loaders for images
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
+        exclude: /node_modules/,
         use: ['file-loader'],
       },
     ]
   },
-
+  resolve: {
+    extensions: ['.js', '.jpg', '.css', '.jsx']
+  },
   devServer: {
     host: 'localhost', 
   }
