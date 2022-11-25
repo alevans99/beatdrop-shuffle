@@ -1,11 +1,10 @@
 import React from 'react'
-import cityBackground from '../../assets/city-background'
 import '../../styles/LandingPage.css'
 import leftImage from '../../assets/char_select_fox.png'
 import rightImage from '../../assets/char_select_penguin_flipped.png'
 function LandingPage() {
   return (
-    <div id="LandingPage" className="LandingPage" style={{ backgroundImage: `url(${cityBackground})`, height: '100vh'}}>
+    <div id="LandingPage" className="LandingPage" >
       <div className='landing-container'>
         <div className='landing-image-container-left'>
           <img className='landing-image-left' src={leftImage}></img>
