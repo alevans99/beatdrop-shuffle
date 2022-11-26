@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../styles/LandingPage.css'
+import '../../styles/pages/LandingPage.css'
 import leftImage from '../../assets/char_select_fox.png'
 import rightImage from '../../assets/char_select_penguin_flipped.png'
 import { useNavigate } from 'react-router-dom'
