@@ -1,5 +1,15 @@
+* {
+    box-sizing: border-box
+}
+
+.hidden {
+    display: none;
+}
+
 #App {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
+    font-family: 'Orbitron', sans-serif;
+
 }

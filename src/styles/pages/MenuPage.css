@@ -1,0 +1,29 @@
+.menu-container {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 40vh 40vh;
+    grid-template-rows: 40vh 40vh;
+    grid-template-areas:
+        "play leaderboards"
+        "progress help";
+    justify-content: center;
+    gap: 10px;
+    align-content: center;
+}
+
+.menu-play-container {
+    grid-area: play;
+}
+
+.menu-leaderboards-container {
+    grid-area: leaderboards;
+}
+
+.menu-progress-container {
+    grid-area: progress;
+}
+
+.menu-help-container {
+    grid-area: help;
+}
