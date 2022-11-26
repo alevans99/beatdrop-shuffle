@@ -6,7 +6,6 @@ function MenuImageButton({buttonText, buttonImage}) {
 
   const handleButtonHover = (hoverState) =>{
     setButtonHover(() => {
-      console.log('setting hover state' , hoverState)
       return hoverState
     })
   } 

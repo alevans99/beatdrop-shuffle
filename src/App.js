@@ -4,6 +4,7 @@ import './App.css'
 import LandingPage from './components/pages/LandingPage'
 import cityBackground from './assets/city-background'
 import MenuPage from './components/pages/MenuPage'
+import LevelSelectPage from './components/pages/LevelSelectPage'
 
 function App() {
   return (
@@ -18,6 +19,11 @@ function App() {
           <Route
             path='/menu'
             element={<MenuPage/>}
+          />
+
+          <Route
+            path='/level-select'
+            element={<LevelSelectPage/>}
           />
         </Routes>
       </div>
