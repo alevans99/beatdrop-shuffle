@@ -39,14 +39,14 @@ module.exports = {
       },
       //Loaders for images
       {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
+        test: /\.(png|jp(e*)g|svg|gif|mp3|wav)$/,
         exclude: /node_modules/,
         use: ['file-loader'],
       },
     ]
   },
   resolve: {
-    extensions: ['.js', '.jpg', '.css', '.jsx']
+    extensions: ['.js', '.jpg', '.css', '.jsx', '.mp3', '.wav']
   },
   devServer: {
     host: 'localhost', 
