@@ -1,0 +1,9 @@
+.level-select-locked-image {
+    height: 25%;
+    width: auto;
+    position: absolute;
+}
+
+.locked {
+    filter: grayscale(100%);
+}
