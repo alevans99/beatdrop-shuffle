@@ -92,6 +92,9 @@ export default class MainGameScene extends Phaser.Scene {
   }
 
   
+  /**
+   * Allows touch screen/mouse click controls
+   */
   addOnscreenControls = () => {
     this.zone_left = this.add
       .zone(0, 0, 300, 800)
@@ -209,6 +212,34 @@ export default class MainGameScene extends Phaser.Scene {
     })
   }
 
+
+  //Move any stars that overlap a platform
+  checkForStarOverlaps= () => {
+    this.physics.world.overlap(
+      this.starsGroup.getChildren(),
+      this.platformGroup.getChildren(),
+      (star, platform) => {
+        star.body.reset(star.body.x, platform.body.y + 200)
+      }
+    )
+  }
+
+  //Move any powerups that overlap a platform
+  checkForPowerupOverlaps= () => {
+    this.physics.world.overlap(
+      this.powerupsGroup.getChildren(),
+      this.platformGroup.getChildren(),
+      (powerup, platform) => {
+        powerup.body.reset(powerup.body.x, platform.body.y + 200)
+      }
+    )
+  }
+  
+
+  /**
+   * Adds a new physics groups for stars. Adds stars at random coords based on
+   * last star places and level config.
+   */
   createStars = () => {
     this.starsGroup = this.physics.add.group()
 
@@ -229,16 +260,11 @@ export default class MainGameScene extends Phaser.Scene {
       this.lastCreatedStar = star
     }
 
-    //   Move overlapping stars
-    this.physics.world.step(0)
+    //Move overlapping stars
+    console.log(this.starsGroup)
+    console.log(this.platformGroup)
 
-    this.physics.world.overlap(
-      this.starsGroup,
-      this.platformGroup,
-      (star, platform) => {
-        star.body.reset(star.body.x, star.body.y + 300)
-      }
-    )
+    this.checkForStarOverlaps()
 
     this.starsGroup.getChildren().forEach((item) => {
       item.setVelocityY(this.objectVelocityY)
@@ -267,13 +293,7 @@ export default class MainGameScene extends Phaser.Scene {
     }
     this.physics.world.step(0)
     //   Move overlapping powerups
-    this.physics.world.overlap(
-      this.powerupsGroup,
-      this.platformGroup,
-      (powerup, platform) => {
-        powerup.body.reset(powerup.body.x, powerup.body.y + 300)
-      }
-    )
+    this.checkForPowerupOverlaps()
 
     this.powerupsGroup.getChildren().forEach((item) => {
       item.setVelocityY(this.objectVelocityY)
@@ -582,7 +602,7 @@ export default class MainGameScene extends Phaser.Scene {
     this.scoreText.setVisible(false)
     this.button.setVisible(false)
 
-    // this.scene.launch('EndScene', { score: this.score })
+    this.scene.launch('EndScene', { score: this.score })
   }
 
   updateScore(updateAmount) {
@@ -750,6 +770,9 @@ export default class MainGameScene extends Phaser.Scene {
           newPlatform.setActive(true)
           newPlatform.setVisible(true)
           this.lastCreatedPlatform = newPlatform
+
+          this.checkForStarOverlaps()
+          this.checkForPowerupOverlaps()
         }
       })
     } else {
