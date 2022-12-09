@@ -5,6 +5,7 @@ import LandingPage from './components/pages/LandingPage'
 import cityBackground from './assets/city-background'
 import MenuPage from './components/pages/MenuPage'
 import LevelSelectPage from './components/pages/LevelSelectPage'
+import GamePage from './components/pages/GamePage'
 
 function App() {
   return (
@@ -24,6 +25,11 @@ function App() {
           <Route
             path='/level-select'
             element={<LevelSelectPage/>}
+          />
+
+          <Route
+            path='/game'
+            element={<GamePage/>}
           />
         </Routes>
       </div>
