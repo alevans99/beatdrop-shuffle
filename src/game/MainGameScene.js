@@ -13,8 +13,10 @@ export default class MainGameScene extends Phaser.Scene {
     console.log('Setting up game')
     super('MainGameScene')
 
+    //Track score
     this.score = 0
-
+    this.scoreText = ''
+    
     //Track game state
     this.gameInProgress = true
     this.gameOver = false
@@ -213,7 +215,9 @@ export default class MainGameScene extends Phaser.Scene {
   }
 
 
-  //Move any stars that overlap a platform
+  /**
+  * Move any stars that overlap a platform
+  */  
   checkForStarOverlaps= () => {
     this.physics.world.overlap(
       this.starsGroup.getChildren(),
@@ -223,8 +227,9 @@ export default class MainGameScene extends Phaser.Scene {
       }
     )
   }
-
-  //Move any powerups that overlap a platform
+  /**
+  * Move any powerups that overlap a platform
+  */
   checkForPowerupOverlaps= () => {
     this.physics.world.overlap(
       this.powerupsGroup.getChildren(),
@@ -238,7 +243,7 @@ export default class MainGameScene extends Phaser.Scene {
 
   /**
    * Adds a new physics groups for stars. Adds stars at random coords based on
-   * last star places and level config.
+   * last star placed and level config.
    */
   createStars = () => {
     this.starsGroup = this.physics.add.group()
@@ -261,9 +266,6 @@ export default class MainGameScene extends Phaser.Scene {
     }
 
     //Move overlapping stars
-    console.log(this.starsGroup)
-    console.log(this.platformGroup)
-
     this.checkForStarOverlaps()
 
     this.starsGroup.getChildren().forEach((item) => {
@@ -271,6 +273,10 @@ export default class MainGameScene extends Phaser.Scene {
     })
   }
 
+  /**
+   * Adds a new physics groups for powerups. Adds powerups at random coords based on
+   * last powerup placed and level config.
+   */
   createPowerups = () => {
     this.powerupsGroup = this.physics.add.group()
 
@@ -299,10 +305,12 @@ export default class MainGameScene extends Phaser.Scene {
       item.setVelocityY(this.objectVelocityY)
     })
   }
-
+  
+  /**
+  * Load player sprite
+  */
   createPlayer = () => {
     this.player = this.physics.add.sprite(300, 400, 'avatar')
-    // this.player.setScale(1.2)
     this.player.setCollideWorldBounds(true)
     this.player.body.setBounceY(0.1)
 
@@ -310,16 +318,24 @@ export default class MainGameScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys()
   }
 
+  /**
+   * Creates and returns custom text object
+   * @param {*} xPosition - Text Position on screen - x
+   * @param {*} yPosition - Text Position on screen - y
+   * @param {*} value 
+   * @param {*} fontSize 
+   * @param {*} color 
+   * @param {*} strokeText 
+   */
   createText = (
     xPosition,
     yPosition,
-    propName,
     value,
     fontSize = '48px',
     color = this.game.textColor,
     strokeText = true
   ) => {
-    this[propName] = this.add
+    let textObject = this.add
       .text(xPosition, yPosition, value, {
         fontSize: fontSize,
         align: 'center',
@@ -330,9 +346,14 @@ export default class MainGameScene extends Phaser.Scene {
       .setShadow(4, 4, '#333333', 4, false, true)
       .setScrollFactor(0)
 
-    if (strokeText) this[propName].setStroke('black', 4)
+    if (strokeText) textObject.setStroke('black', 4)
+    return textObject
+
   }
 
+  /**
+   * Controls fall speed and sets platform collision action.
+   */
   setPlayerPhysics = () => {
     this.player.body.setGravityY(50)
     this.player.body.setMaxVelocityY(70)
@@ -347,6 +368,9 @@ export default class MainGameScene extends Phaser.Scene {
     )
   }
 
+  /**
+   * Creates animations for player movement.
+   */
   setPlayerAnimation = () => {
     this.anims.create({
       key: 'left',
@@ -375,6 +399,14 @@ export default class MainGameScene extends Phaser.Scene {
     })
   }
 
+
+
+  /**
+   * Triggers on platform collision. Animates avatar, adds
+   * SFX and pauses game and reduces score.
+   * @param {*} platform 
+   * @returns 
+   */
   detectPlatformCollisions = (player, platform) => {
     if (this.gameInProgress) {
       this.gameMusic.platformImpactSFX.play()
@@ -419,7 +451,6 @@ export default class MainGameScene extends Phaser.Scene {
         }
         //Activate and store reference to the last platform so we can place the next on below
         //it.
-
         newPlatform.setActive(true)
         newPlatform.setVisible(true)
         this.lastCreatedPlatform = newPlatform
@@ -428,7 +459,7 @@ export default class MainGameScene extends Phaser.Scene {
 
         platform.destroy()
       }
-
+      //Restart the game after delay
       this.time.addEvent({
         delay: 1500,
         loop: false,
@@ -440,6 +471,9 @@ export default class MainGameScene extends Phaser.Scene {
     }
   }
 
+  /**
+   * Triggers action on star/avatar collisions
+   */
   setupUserStarInteraction = () => {
     this.physics.add.collider(this.starsGroup)
     this.physics.add.overlap(
@@ -451,17 +485,22 @@ export default class MainGameScene extends Phaser.Scene {
     )
   }
 
+  /**
+   * Triggers action on powerup/avatar collisions
+   */
   setupUserPowerupInteraction = () => {
     this.physics.add.collider(this.powerupsGroup)
     this.physics.add.overlap(
       this.player,
       this.powerupsGroup,
       this.detectPowerupCollisions,
-      null,
       this
     )
   }
 
+  /**
+   * Triggers action on powerup/avatar collisions
+   */
   detectStarCollisions = (player, star) => {
     this.starsGroup.killAndHide(star)
     const newStarY =
@@ -483,6 +522,13 @@ export default class MainGameScene extends Phaser.Scene {
     this.lastCreatedStar = newStar
   }
 
+  /**
+   * On powerup collision, triggers action and reloads
+   * powerup at random point.
+   * @param {*} player 
+   * @param {*} powerup 
+   * @returns 
+   */
   detectPowerupCollisions = (player, powerup) => {
     this.powerupsGroup.killAndHide(powerup)
     const newPowerupY =
@@ -620,7 +666,7 @@ export default class MainGameScene extends Phaser.Scene {
   }
 
   createScoreText = () => {
-    this.createText(300, 24, 'scoreText', 'Score: 0', '28px')
+    this.scoreText = this.createText(300, 46, 'Score: 0', '28px')
   }
 
   recyclePowerups = () => {
