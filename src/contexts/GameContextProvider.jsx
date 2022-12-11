@@ -15,7 +15,7 @@ export function useGameContext() {
  */
 export function GameContextProvider({ children }) {
 
-  const [levelSelected, setLevelSelected] = useState(1)
+  const [levelSelected, setLevelSelected] = useState(null)
   function selectLevel(newLevel) {
     setLevelSelected(newLevel)
   } 

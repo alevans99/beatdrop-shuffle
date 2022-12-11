@@ -3,21 +3,35 @@ import {  useEffect } from 'react'
 import '../../styles/pages/GamePage.css'
 import NewGame from '../../game/NewGame'
 import { useGameContext } from '../../contexts/GameContextProvider'
+import { useNavigate } from 'react-router-dom'
 function GamePage() {
+  const navigate = useNavigate()
 
   const {levelSelected} = useGameContext()
-  console.log(levelSelected, ' Used context')
   const destroyGame = () => {
     document.game.destroy(true)
   }
 
+
+
+
+
   useEffect(() => {
-    const height = 800
-    const width = 600
-    const levelToPlay = `level${levelSelected}`
-    document.game = new NewGame(levelToPlay, width, height, destroyGame)
+    if (!levelSelected){
+      navigate('/level-select')
+    } else {
+      const height = 800
+      const width = 600
+      const levelToPlay = `level${levelSelected}`
+      document.game = new NewGame(levelToPlay, width, height, destroyGame)
+    }
+
+
     return () => {
-      document.game.destroy(true)
+      if (document.game){
+        document.game.destroy(true)
+      }
+
     }
   }, [])
 
