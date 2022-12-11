@@ -494,6 +494,7 @@ export default class MainGameScene extends Phaser.Scene {
       this.player,
       this.powerupsGroup,
       this.detectPowerupCollisions,
+      null,
       this
     )
   }
