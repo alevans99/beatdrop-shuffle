@@ -2,8 +2,11 @@ import React from 'react'
 import {  useEffect } from 'react'
 import '../../styles/pages/GamePage.css'
 import NewGame from '../../game/NewGame'
+import { useGameContext } from '../../contexts/GameContextProvider'
 function GamePage() {
 
+  const {levelSelected} = useGameContext()
+  console.log(levelSelected, ' Used context')
   const destroyPhaserGame = () => {
     document.game.destroy(true)
   }
@@ -11,7 +14,8 @@ function GamePage() {
   useEffect(() => {
     const height = 800
     const width = 600
-    document.game = new NewGame('level3', width, height, destroyPhaserGame)
+    const levelToPlay = `level${levelSelected}`
+    document.game = new NewGame(levelToPlay, width, height, destroyPhaserGame)
     return () => {
       document.game.destroy(true)
     }
@@ -26,7 +30,6 @@ function GamePage() {
 
 
 }
-
 
   
 
