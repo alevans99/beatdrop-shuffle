@@ -7,7 +7,7 @@ function GamePage() {
 
   const {levelSelected} = useGameContext()
   console.log(levelSelected, ' Used context')
-  const destroyPhaserGame = () => {
+  const destroyGame = () => {
     document.game.destroy(true)
   }
 
@@ -15,7 +15,7 @@ function GamePage() {
     const height = 800
     const width = 600
     const levelToPlay = `level${levelSelected}`
-    document.game = new NewGame(levelToPlay, width, height, destroyPhaserGame)
+    document.game = new NewGame(levelToPlay, width, height, destroyGame)
     return () => {
       document.game.destroy(true)
     }

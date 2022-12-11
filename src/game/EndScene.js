@@ -7,9 +7,9 @@ import retryButton from '../assets/buttons/retry.png'
 import quitButton from '../assets/buttons/quit.png'
 
 export default class EndScene extends Phaser.Scene {
-  constructor(destroyPhaserGame) {
+  constructor(destroyGame) {
     super('EndScene')
-    this.destroyPhaserGame = destroyPhaserGame
+    this.destroyGame = destroyGame
     this.scoreCounter = 0
     this.badgesCreated = false
     this.sceneText = {
@@ -112,7 +112,7 @@ export default class EndScene extends Phaser.Scene {
       .image(300, 600, 'quit-button')
       .setInteractive()
       .on('pointerdown', () => {
-        this.game.destroyPhaserGame()
+        this.destroyGame()
       })
   }
 

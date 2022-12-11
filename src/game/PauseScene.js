@@ -8,10 +8,10 @@ import muteButton from '../assets/buttons/mute.png'
 import unmuteButton from '../assets/buttons/unmute.png'
 
 export default class PauseScene extends Phaser.Scene {
-  constructor(destroyPhaserGame) {
+  constructor(destroyGame) {
     super('PauseScene')
     this.isMuted = false
-    this.destroyPhaserGame = destroyPhaserGame
+    this.destroyGame = destroyGame
   }
 
   createText = (
@@ -68,7 +68,7 @@ export default class PauseScene extends Phaser.Scene {
       .image(300, 400, 'quit-button')
       .setInteractive()
       .on('pointerdown', () => {
-        this.game.destroyPhaserGame()
+        this.game.destroyGame()
       })
 
     this.unMuteButton = this.add
