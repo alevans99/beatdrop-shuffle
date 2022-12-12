@@ -12,11 +12,9 @@ export default class EndScene extends Phaser.Scene {
     this.destroyGame = destroyGame
     this.scoreCounter = 0
     this.badgesCreated = false
-    this.sceneText = {
-    }
     this.score = null
     this.quitButton = null
-    
+    this.sceneText = {}
   }
 
 
@@ -146,17 +144,19 @@ export default class EndScene extends Phaser.Scene {
   }
 
   update = () => {
-    //Increase the displayed score gradually until score displayed
-    if (this.sceneText.scoreText?.text < this.score) {
-      if (this.score > 10000) this.scoreCounter += 1000
-      else if (this.score > 1000) this.scoreCounter += 100
-      else if (this.score > 100) this.scoreCounter += 10
-      else this.scoreCounter += 10
-      this.sceneText.scoreText.setText(this.scoreCounter)
-    } else if (this.scoreText) {
-      this.scoreCounter = this.score
-      this.sceneText.scoreText.setText(this.scoreCounter)
+    //Gradually increase the score text until it matches the score
+    if (this.sceneText.scoreText !== undefined && this.score !== null) {
+      console.log(this.score, this.scoreCounter) 
+      if (this.score > 1000 && ((this.score - this.scoreCounter) > 1000)) {
+        this.scoreCounter += 1000
+        this.sceneText.scoreText.setText(this.scoreCounter)
+      } else {
+        this.scoreCounter = this.score
+        this.sceneText.scoreText.setText(this.score)
+      }
+     
     }
+
 
     if (this.scoreCounter === this.score) {
       this.time.delayedCall(500, this.createBadges, [], this)

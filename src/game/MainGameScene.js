@@ -593,6 +593,7 @@ export default class MainGameScene extends Phaser.Scene {
     })
   }
 
+  //Controls the length of game by delaying game end by number of ms
   startEndGame = () => {
     this.gameTimer = this.time.addEvent({
       delay: 54000,
@@ -667,7 +668,7 @@ export default class MainGameScene extends Phaser.Scene {
   }
 
   createScoreText = () => {
-    this.scoreText = this.createText(300, 46, 'Score: 0', '28px')
+    this.scoreText = this.createText(300, 40, 'Score: 0', '28px')
   }
 
   recyclePowerups = () => {
