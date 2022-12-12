@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
-import bronzeMedal from '../assets/medals/bronzeMedal.png'
-import silverMedal from '../assets/medals/silverMedal.png'
-import goldMedal from '../assets/medals/goldMedal.png'
+import bronzeMedal from '../assets/medals/bronzeMedal-100px.png'
+import silverMedal from '../assets/medals/silverMedal-100px.png'
+import goldMedal from '../assets/medals/goldMedal-100px.png'
 import menuButton from '../assets/buttons/menu.png'
 import retryButton from '../assets/buttons/retry.png'
 import quitButton from '../assets/buttons/quit.png'
@@ -84,17 +84,21 @@ export default class EndScene extends Phaser.Scene {
    */
   createBadges = () => {
     this.badgeSpriteBronze = this.add
-      .sprite(150, 450, 'bronzeMedal')
+      .sprite(150, 400, 'bronzeMedal')
       .setTint(0x666666)
       .setAlpha(0.5)
+      .setScale(1, 1)
     this.badgeSpriteSilver = this.add
-      .sprite(300, 450, 'silverMedal')
+      .sprite(300, 400, 'silverMedal')
       .setTint(0x666666)
       .setAlpha(0.5)
+      .setScale(1, 1)
+
     this.badgeSpriteGold = this.add
-      .sprite(450, 450, 'goldMedal')
+      .sprite(450, 400, 'goldMedal')
       .setTint(0x666666)
       .setAlpha(0.5)
+      .setScale(1, 1)
 
     if (this.score > 60000) this.badgeSpriteBronze.clearAlpha().clearTint()
     if (this.score > 80000) this.badgeSpriteSilver.clearAlpha().clearTint()
@@ -125,19 +129,19 @@ export default class EndScene extends Phaser.Scene {
   create = () => {
 
     //Display user score in stages
-    this.createText(300, 160, 'playerText', this.game.username)
+    this.createText(300, 100, 'playerText', this.game.username)
 
     this.time.delayedCall(
       500,
       this.createText,
-      [300, 230, 'youScoredText', 'you scored'],
+      [300, 150, 'youScoredText', 'you scored'],
       this
     )
 
     this.time.delayedCall(
       1000,
       this.createText,
-      [300, 350, 'scoreText', 0],
+      [300, 250, 'scoreText', 0],
       this
     )
 
