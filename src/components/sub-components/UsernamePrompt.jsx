@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ModalComponent from '../sub-components/modalComponent'
+import ModalComponent from './ModalComponent'
 import {PropTypes} from 'prop-types'
 
 function UsernamePrompt({showUsernamePrompt}) {
