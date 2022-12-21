@@ -1,0 +1,62 @@
+.ModalComponent {
+    background-color: rgba(0, 0, 0, 0.219);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: rgb(252, 252, 252);
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 1fr 50px;
+}
+
+.close-modal-button {}
+
+
+.hidden-modal-content {
+    display: none;
+}
+
+.hide-modal {
+    display: none;
+}
+
+.fade-in {
+    animation: fade-in 500ms;
+
+}
+
+.fade-out {
+    animation: fade-out 500ms;
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+
+    }
+
+    to {
+        opacity: 0;
+
+
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+
+    }
+}
