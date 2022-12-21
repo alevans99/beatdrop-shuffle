@@ -21,12 +21,8 @@ function ModalComponent({children, size, handleModalDisplayed, modalDisplayed}) 
       }}
       ref={modalRef}
     >
-      <div className={'modal-content'}  style={{height: size.height, width: size.width}}>
+      <div className={'modal-content-container'}  style={{height: size.height, width: size.width}}>
         {children}
-        <button onClick={() => {
-          handleModalDisplayed()
-        }} className='close-modal-button'>Go Away Please</button>
-
       </div>
     </div>
   )

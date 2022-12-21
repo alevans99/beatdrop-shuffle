@@ -1,0 +1,18 @@
+#UsernamePrompt .name-prompt-heading {
+    font-size: 3rem;
+    padding: 6px;
+    font-family: 'Sarpanch', sans-serif;
+
+}
+
+#UsernamePrompt .name-prompt-subtitle {
+    font-size: 1rem;
+    padding: 6px;
+    margin: 0;
+    font-family: 'Sarpanch', sans-serif;
+
+}
+
+#UsernamePrompt .name-prompt-modal-content {
+    text-align: center;
+}
