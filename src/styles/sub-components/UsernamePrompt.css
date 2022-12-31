@@ -1,3 +1,12 @@
+#UsernamePrompt .name-prompt-modal-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: scroll;
+}
+
+
 #UsernamePrompt .name-prompt-heading {
     font-size: 3rem;
     padding: 6px;
@@ -13,6 +22,69 @@
 
 }
 
-#UsernamePrompt .name-prompt-modal-content {
+#UsernamePrompt .name-prompt-subtitle {
+    font-size: 1rem;
+    padding: 6px;
+    margin: 0;
+    font-family: 'Sarpanch', sans-serif;
+
+}
+
+#UsernamePrompt form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+#UsernamePrompt #username-input {
+    max-width: 92%;
+    font-size: 2rem;
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    border: none;
+    border-bottom: 2px solid #fc1681;
+    color: #fc1681;
     text-align: center;
+}
+
+#UsernamePrompt #username-input:focus {
+    outline: none;
+    border-bottom: 2px solid #fc1681;
+
+}
+
+#UsernamePrompt .username-input-button {
+    height: 60px;
+    width: 200px;
+    border: 2px solid #fc1681;
+    background-color: #fff;
+    border-radius: 6px;
+    color: #fc1681;
+    padding: 0.4em;
+    font-family: 'Sarpanch', sans-serif;
+    font-size: 1.4rem;
+
+}
+
+#UsernamePrompt .username-input-button:hover {
+    box-shadow: 0 0 .2rem #fff,
+        0 0 0rem #fff,
+        0 0 1rem #fc1681,
+        0 0 0.4rem #f04796,
+        0 0 1.4rem #d84c8d,
+        inset 0 0 1.4rem #fca3cc;
+
+}
+
+#UsernamePrompt .username-input-button:active {
+    box-shadow: 0 0 .2rem #fff,
+        0 0 0rem #fff,
+        0 0 1rem #f3cfe0,
+        0 0 0.4rem #ffc8e2,
+        0 0 1.4rem #fdc6e0,
+        inset 0 0 1.4rem #fca3cc;
+    color: #fd91c3;
+
 }
