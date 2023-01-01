@@ -1,8 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-
+import * as ReactDOM from 'react-dom/client'
 //Strict Mode
 // const root = ReactDOM.createRoot(document.getElementById('root'))
 // root.render(
