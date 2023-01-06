@@ -12,6 +12,8 @@ export default class MainGameScene extends Phaser.Scene {
   constructor(levelChoice, avatar) {
     super('MainGameScene')
 
+
+
     //Track score
     this.score = 0
     this.scoreText = ''
@@ -638,16 +640,16 @@ export default class MainGameScene extends Phaser.Scene {
   endLevel = () => {
     if (!this.gameOver) {
       this.gameOver = true
-      this.physics.pause()
+      this.physics.shutdown()
     }
 
-    this.sound.pauseAll()
+    this.sound.stopAll()
     this.scene.pause('MainGameScene')
 
     this.scoreText.setVisible(false)
     this.button.setVisible(false)
 
-    this.scene.launch('EndScene', { score: this.score })
+    this.scene.launch('EndScene', { score: this.score} )
   }
 
   updateScore(updateAmount) {

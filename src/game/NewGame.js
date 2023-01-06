@@ -77,6 +77,31 @@ export default class NewGame extends Phaser.Game {
      * Start game
      */
     this.scene.start('MainGameScene')
+
+    /**
+     * Removes and adds all scenes to restart the game.
+     */
+    this.restartGame = () => {
+      this.scene.stop('MainGameScene')
+      this.scene.stop('PauseScene')
+      this.scene.stop('EndScene')
+
+      this.scene.remove('MainGameScene')
+      this.scene.remove('PauseScene')
+      this.scene.remove('EndScene')
+
+      this.pauseScene = new PauseScene(destroyGame)
+      this.mainGameScene = new MainGameScene(levelChoice)
+      this.endScene = new EndScene(destroyGame)
+      
+      this.scene.add('MainGameScene', this.mainGameScene)
+      this.scene.add('PauseScene', this.pauseScene)
+      this.scene.add('EndScene', this.endScene)
+      
+      this.scene.start('MainGameScene')
+
+    }
+
   }
 
 }

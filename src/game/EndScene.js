@@ -5,7 +5,7 @@ import goldMedal from '../assets/medals/goldMedal-100px.png'
 import menuButton from '../assets/buttons/menu.png'
 import retryButton from '../assets/buttons/retry.png'
 import quitButton from '../assets/buttons/quit.png'
-
+import restart from '../assets/buttons/restart.png'
 export default class EndScene extends Phaser.Scene {
   constructor(destroyGame) {
     super('EndScene')
@@ -42,6 +42,8 @@ export default class EndScene extends Phaser.Scene {
     this.load.image('menuButton', menuButton)
     this.load.image('retryButton', retryButton)
     this.load.image('quitButton', quitButton)
+    this.load.image('restart', restart)
+
   }
 
 
@@ -111,11 +113,19 @@ export default class EndScene extends Phaser.Scene {
    */
   createButtons = () => {
     this.quitButton = this.add
-      .image(300, 600, 'quit-button')
+      .image(150, 600, 'quitButton')
       .setInteractive()
       .on('pointerdown', () => {
         this.destroyGame()
       })
+
+    this.restart = this.add
+      .image(450, 600, 'restart')
+      .setInteractive()
+      .on('pointerdown', () => {
+        this.game.restartGame()
+      })
+
   }
 
   /**
