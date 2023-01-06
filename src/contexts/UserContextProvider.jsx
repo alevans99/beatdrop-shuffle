@@ -61,7 +61,7 @@ export function UserContextProvider({ children }) {
       updateUserScores(newScoresObject)
 
       return {
-        newScoreAchived: true,
+        newScoreAchieved: true,
         level,
         newScore,
         newScorePosition: newScoreIndex + 1
@@ -69,7 +69,7 @@ export function UserContextProvider({ children }) {
     }
 
     return {
-      newScoreAchived: false
+      newScoreAchieved: false
     }
   }
 

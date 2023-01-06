@@ -9,7 +9,7 @@ import PauseScene from './PauseScene'
  */
 export default class NewGame extends Phaser.Game {
 
-  constructor(levelChoice, width, height, destroyGame) {
+  constructor(levelChoice, width, height, destroyGame, checkGameScore) {
 
     /**
      * Config setup - Determines entry point, size options
@@ -58,6 +58,8 @@ export default class NewGame extends Phaser.Game {
     //Function to end game from component.
     this.destroyGame = destroyGame
 
+    //Function to check whether user has a new local high score
+    this.checkGameScore = checkGameScore
     /**
      * Creates game scenes and passes key variables
      */
@@ -65,14 +67,12 @@ export default class NewGame extends Phaser.Game {
     this.pauseScene = new PauseScene(destroyGame)
     this.endScene = new EndScene(destroyGame)
     this.mainGameScene = new MainGameScene(levelChoice)
-    console.log('Finished creating scenes')
     /**
      * Add game scenes
      */
     this.scene.add('MainGameScene', this.mainGameScene)
     this.scene.add('PauseScene', this.pauseScene)
     this.scene.add('EndScene', this.endScene)
-    console.log('finished adding scenes')
     /**
      * Start game
      */

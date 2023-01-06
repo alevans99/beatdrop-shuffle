@@ -10,7 +10,6 @@ import getPowerUpAssets from './game-utils/getPowerUpAssets'
 export default class MainGameScene extends Phaser.Scene {
 
   constructor(levelChoice, avatar) {
-    console.log('Setting up game')
     super('MainGameScene')
 
     //Track score
@@ -33,11 +32,9 @@ export default class MainGameScene extends Phaser.Scene {
 
     //This sets the key level details such as assets, platform distance and powerups
     this.levelConfig = getLevelConfig(levelChoice)
-    console.log('level config ', this.levelConfig, levelChoice)
     this.lastCreatedPlatform = undefined
 
     this.spritesheet = this.avatar === 'fox' ? foxSpritesheet : penguinSpritesheet
-    console.log('setting sprite', this.spritesheet)
   }
 
   /**
@@ -741,7 +738,6 @@ export default class MainGameScene extends Phaser.Scene {
   }
 
   preload() {
-    console.log('preloading things')
     this.loadImages()
     this.loadAudio()
   }

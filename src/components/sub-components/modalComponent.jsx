@@ -16,7 +16,6 @@ function ModalComponent({children, size, handleModalDisplayed, modalDisplayed}) 
       onAnimationStart={(t) => {
         if (t.animationName === 'fade-in'){
           modalRef.current.classList.remove('hide-modal')
-          console.log('Starting fade in')
         }
       }}
       ref={modalRef}

@@ -4,16 +4,15 @@ import '../../styles/pages/GamePage.css'
 import NewGame from '../../game/NewGame'
 import { useGameContext } from '../../contexts/GameContextProvider'
 import { useNavigate } from 'react-router-dom'
+import { useUserContext } from '../../contexts/UserContextProvider'
 function GamePage() {
   const navigate = useNavigate()
 
+  const {checkNewUserScore} = useUserContext()
   const {levelSelected} = useGameContext()
   const destroyGame = () => {
     document.game.destroy(true)
   }
-
-
-
 
 
   useEffect(() => {
@@ -23,7 +22,7 @@ function GamePage() {
       const height = 800
       const width = 600
       const levelToPlay = `level${levelSelected}`
-      document.game = new NewGame(levelToPlay, width, height, destroyGame)
+      document.game = new NewGame(levelToPlay, width, height, destroyGame, checkNewUserScore)
     }
 
 

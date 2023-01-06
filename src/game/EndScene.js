@@ -131,10 +131,24 @@ export default class EndScene extends Phaser.Scene {
     //Display user score in stages
     this.createText(300, 100, 'playerText', this.game.username)
 
+    const scoreCheckResult = this.game.checkGameScore(this.score, this.game.levelChoice)
+
+    if (scoreCheckResult.newScoreAchieved){
+      this.time.delayedCall(
+        500,
+        this.createText,
+        [300, 50, 'newLocalHighScore', 'New High Score!', 30],
+        this
+      )
+  
+
+    }
+
+
     this.time.delayedCall(
       500,
       this.createText,
-      [300, 150, 'youScoredText', 'you scored'],
+      [300, 150, 'youScoredText', 'You Scored:'],
       this
     )
 
@@ -150,7 +164,6 @@ export default class EndScene extends Phaser.Scene {
   update = () => {
     //Gradually increase the score text until it matches the score
     if (this.sceneText.scoreText !== undefined && this.score !== null) {
-      console.log(this.score, this.scoreCounter) 
       if (this.score > 1000 && ((this.score - this.scoreCounter) > 1000)) {
         this.scoreCounter += 1000
         this.sceneText.scoreText.setText(this.scoreCounter)
@@ -158,9 +171,7 @@ export default class EndScene extends Phaser.Scene {
         this.scoreCounter = this.score
         this.sceneText.scoreText.setText(this.score)
       }
-     
     }
-
 
     if (this.scoreCounter === this.score) {
       this.time.delayedCall(500, this.createBadges, [], this)
