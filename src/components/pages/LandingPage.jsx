@@ -19,7 +19,6 @@ function LandingPage() {
     }
 
   }
-
   //Check if user has profile on first load
   // useEffect(() => {
   //   if (username === null){

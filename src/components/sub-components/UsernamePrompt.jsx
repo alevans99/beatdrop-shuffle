@@ -3,20 +3,22 @@ import ModalComponent from './ModalComponent'
 import {PropTypes} from 'prop-types'
 import '../../styles/sub-components/UsernamePrompt.css'
 import { useUserContext } from '../../contexts/UserContextProvider'
+import { useNavigate } from 'react-router-dom'
 
 
 function UsernamePrompt({showUsernamePrompt}) {
+  const navigate = useNavigate()
   const {updateUsername} = useUserContext()
   const [usernameInput, setUsernameInput] = useState('')
 
   const handleUsernameInput = (e) => {
     setUsernameInput(e.target.value)
-    console.log(usernameInput)
   }
 
   const handleFormSubmission = (e) => {
     e.preventDefault()
     updateUsername(usernameInput)
+    return navigate('/menu')
 
   }
 
