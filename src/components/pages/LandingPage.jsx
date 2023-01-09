@@ -1,14 +1,16 @@
-import React, {useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import '../../styles/pages/LandingPage.css'
 import leftImage from '../../assets/char_select_fox.png'
 import rightImage from '../../assets/char_select_penguin_flipped.png'
 import { useNavigate } from 'react-router-dom'
 import UsernamePrompt from '../sub-components/UsernamePrompt'
 import { useUserContext } from '../../contexts/UserContextProvider'
+import { useHighScoresContext } from '../../contexts/HighScoresContextProvider'
 
 function LandingPage() {
   const navigate = useNavigate()
   const {username} = useUserContext()
+  const { fetchHighScores } = useHighScoresContext()
   const [showUsernamePrompt, setShowUsernamePrompt] = useState(false)
 
   const handleLandingButtonClick = () => {
@@ -19,12 +21,9 @@ function LandingPage() {
     }
 
   }
-  //Check if user has profile on first load
-  // useEffect(() => {
-  //   if (username === null){
-  //     setShowUsernamePrompt(true)
-  //   }
-  // }, [username])
+  useEffect(() => {
+    fetchHighScores()
+  }, [])
 
   return (
     <div id="LandingPage" className="LandingPage" >
