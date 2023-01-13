@@ -2,7 +2,8 @@ import React, {useState, useContext, useEffect} from 'react'
 import {PropTypes} from 'prop-types'
 import  blankScores from './default-values/defaultScores'
 const UserContext = React.createContext()
-
+import { DateTime } from 'luxon'
+import { v4 as uuidv4 } from 'uuid'
 
 export function useUserContext() {
   return useContext(UserContext)
@@ -11,6 +12,7 @@ export function useUserContext() {
 export function UserContextProvider({ children }) {
 
   const [username, setUsername] = useState(null)
+  const [scoreId, setScoreId] = useState(null)
   const [userScores, setUserScores] = useState(null)
 
   function updateUsername(newUsername) {
@@ -75,7 +77,7 @@ export function UserContextProvider({ children }) {
 
 
   useEffect(() => {
-    //Set the username and scores from local storage
+    //Set chosen username if present in local storage
     const localUsername = localStorage.getItem('username')
     if (!localUsername) {
       setUsername(null)
@@ -83,6 +85,17 @@ export function UserContextProvider({ children }) {
       setUsername(localUsername)
     }
 
+    //Set or create score Id to track score ownership
+    const localScoreId = localStorage.getItem('scoreId')
+    if (!scoreId){
+      const newScoreId = uuidv4() + DateTime.now().toUnixInteger()
+      localStorage.setItem('scoreId', newScoreId)
+      setScoreId(newScoreId)
+    } else {
+      setScoreId(localScoreId)
+    }
+
+    //Populate local scores from storage or create new blank set
     const localUserScores = localStorage.getItem('userScores')
     if (!localUserScores) {
       updateUserScores(blankScores)
