@@ -14,6 +14,7 @@ function GamePage() {
   const {levelSelected} = useGameContext()
   const destroyGame = () => {
     document.game.destroy(true)
+    navigate('/level-select')
   }
 
 
