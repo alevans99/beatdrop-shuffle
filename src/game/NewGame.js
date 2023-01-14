@@ -9,7 +9,7 @@ import PauseScene from './PauseScene'
  */
 export default class NewGame extends Phaser.Game {
 
-  constructor(levelChoice, width, height, destroyGame, checkGameScore) {
+  constructor(levelChoice, width, height, destroyGame, checkGameScore, postNewRecord) {
 
     /**
      * Config setup - Determines entry point, size options
@@ -60,6 +60,7 @@ export default class NewGame extends Phaser.Game {
 
     //Function to check whether user has a new local high score
     this.checkGameScore = checkGameScore
+    this.postNewRecord = postNewRecord
     /**
      * Creates game scenes and passes key variables
      */

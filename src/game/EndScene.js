@@ -62,7 +62,7 @@ export default class EndScene extends Phaser.Scene {
     yPosition,
     textName,
     value,
-    fontSize = '48px',
+    fontSize = '68px',
     color = this.game.textColor,
     strokeText = true
   ) => {
@@ -70,7 +70,7 @@ export default class EndScene extends Phaser.Scene {
       .text(xPosition, yPosition, value, {
         fontSize: fontSize,
         align: 'center',
-        fontFamily: '\'Press Start 2P\'',
+        fontFamily: '\'Sarpanch\'',
         color: color,
       })
       .setOrigin(0.5, 0.5)
@@ -142,16 +142,22 @@ export default class EndScene extends Phaser.Scene {
     this.createText(300, 100, 'playerText', this.game.username)
 
     const scoreCheckResult = this.game.checkGameScore(this.score, this.game.levelChoice)
-
     if (scoreCheckResult.newScoreAchieved){
       this.time.delayedCall(
         500,
         this.createText,
-        [300, 50, 'newLocalHighScore', 'New High Score!', 30],
+        [300, 60, 'newLocalHighScore', 'New High Score!', 50, this.game.textColor, true],
         this
       )
-  
+    } else if (scoreCheckResult.newWorldRecord){
+      this.game.postNewRecord(this.score, this.game.levelChoice)
 
+      this.time.delayedCall(
+        500,
+        this.createText,
+        [300, 60, 'newWorldRecordScore', 'New World Record!', 50, this.game.textColor, true],
+        this
+      )
     }
 
 
