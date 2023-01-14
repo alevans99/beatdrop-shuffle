@@ -87,7 +87,7 @@ export function UserContextProvider({ children }) {
 
     //Set or create score Id to track score ownership
     const localScoreId = localStorage.getItem('scoreId')
-    if (!scoreId){
+    if (!localScoreId){
       const newScoreId = uuidv4() + DateTime.now().toUnixInteger()
       localStorage.setItem('scoreId', newScoreId)
       setScoreId(newScoreId)
