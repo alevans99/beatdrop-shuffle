@@ -8,13 +8,13 @@ import LevelSelectPage from './components/pages/LevelSelectPage'
 import GamePage from './components/pages/GamePage'
 import { GameContextProvider } from './contexts/GameContextProvider'
 import { UserContextProvider } from './contexts/UserContextProvider'
-import { HighScoresContextProvider } from './contexts/HighScoresContextProvider'
+import { RecordScoresContextProvider } from './contexts/RecordScoresContextProvider'
 function App() {
 
   return (
     <UserContextProvider>
       <GameContextProvider>
-        <HighScoresContextProvider>
+        <RecordScoresContextProvider>
           <BrowserRouter>
             <div id="App" className="App" style={{ backgroundImage: `url(${cityBackground})`, height: '100vh'}}>
               <Routes>
@@ -39,7 +39,7 @@ function App() {
               </Routes>
             </div>
           </BrowserRouter>
-        </HighScoresContextProvider>
+        </RecordScoresContextProvider>
       </GameContextProvider>
     </UserContextProvider>
   )
