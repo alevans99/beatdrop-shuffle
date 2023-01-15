@@ -9,6 +9,7 @@ import GamePage from './components/pages/GamePage'
 import { GameContextProvider } from './contexts/GameContextProvider'
 import { UserContextProvider } from './contexts/UserContextProvider'
 import { RecordScoresContextProvider } from './contexts/RecordScoresContextProvider'
+import LeaderboardsPage from './components/pages/LeaderboardsPage'
 function App() {
 
   return (
@@ -36,7 +37,13 @@ function App() {
                   path='/game'
                   element={<GamePage/>}
                 />
+
+                <Route
+                  path='/leaderboards'
+                  element={<LeaderboardsPage/>}
+                />
               </Routes>
+              
             </div>
           </BrowserRouter>
         </RecordScoresContextProvider>

@@ -16,7 +16,9 @@ function MenuPage() {
         }} >
           <MenuImageButton buttonText={'Play'} buttonImage={PlayImage} />
         </div>
-        <div className='menu-leaderboards-container'>
+        <div className='menu-leaderboards-container' onClick={() => {
+          navigate('/leaderboards')
+        }}>
           <MenuImageButton buttonText={'Leaderboard'} buttonImage={ProgressImage}/>
         </div>
         <div className='menu-progress-container'>
