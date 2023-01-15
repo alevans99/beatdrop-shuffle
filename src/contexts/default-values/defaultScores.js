@@ -1,37 +1,11 @@
-export default {
-  level1: {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-  },
-  level2: {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-  },
-  level3: {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-  },
-  level4: {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-  },
-  level5: {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
+const blankScoreObject = {}
+for (let i = 0; i < 5; i++) {
+  const levelScores = {}
+  for (let i = 0; i < 5; i++) {
+    levelScores[`${i + 1}`] = { score: 0, user: null, userId: null, timestamp: null }
   }
+  blankScoreObject[`level${i + 1}`] = levelScores
 }
+
+
+export default blankScoreObject
