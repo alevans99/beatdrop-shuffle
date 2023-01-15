@@ -32,49 +32,42 @@ export function UserContextProvider({ children }) {
    * @returns - An object informing if there is a new high score and its details
    */
   function checkNewUserScore(newScore, level) {
+    //Check if the previous lowest score is lower than the new score
+    if (userScores[level]['5'].score < newScore){
+      //If so, save all level score objects to a new array
+      const scoreArrayToSort = [...Object.values(userScores[level])]
+      //add the new high score
+      scoreArrayToSort.push({score: newScore, user: username, userId: scoreId, timestamp: DateTime.now().toISO()})
+      //Sort the array and remove the lowest
 
-    //Get an array of high scores for the level
-    const existingScores = userScores[level] !== undefined ? [...Object.values(userScores[level])] : []
-
-    //Check if the new score is higher than at least one of the previous scores
-    if (existingScores[4] < newScore){
-      let newScoreIndex = 0
-      //Create a new object to store in state
+      const sortedArray = scoreArrayToSort.sort((a, b) => {
+        return b.score - a.score
+      })
+      sortedArray.pop()
+      //create a copy of the existing score object so we can edit
       const newScoresObject = {}
       Object.keys(userScores).forEach((key) => {
         newScoresObject[key] = {...userScores[key]}
       })
-      //Update the level array with the new top 5 scores
-      for (let i = 0; i < existingScores.length; i++){
-        if (existingScores[i] < newScore){
-          existingScores.splice(i, 0, newScore)
-          newScoreIndex = i
-          break
-        }
-      }
-      //Remove the previous lowest score
-      existingScores.pop()
 
-      existingScores.forEach((score, i) => {
-        newScoresObject[level][i + 1] = score
+      //Update the level to use the new scores
+      sortedArray.forEach((score, i) => {
+        newScoresObject[level][i + 1] = {...score}
       })
-  
+
       //Update the scores in state and localstorage
       updateUserScores(newScoresObject)
 
       return {
         newScoreAchieved: true,
         level,
-        newScore,
-        newScorePosition: newScoreIndex + 1
+        newScore
       }
     }
-
     return {
       newScoreAchieved: false
     }
   }
-
 
   useEffect(() => {
     //Set chosen username if present in local storage
