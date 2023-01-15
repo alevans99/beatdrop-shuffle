@@ -23,7 +23,7 @@ function GamePage() {
     const localCheckResult = checkNewUserScore(newScore, level)
     if (localCheckResult.newScoreAchieved){
       const localRecordCheck = localCheckForRecordScore(newScore, level)
-      return localRecordCheck
+      return localRecordCheck.newWorldRecord ? localRecordCheck : localCheckResult
     }
     return localCheckResult
   }
