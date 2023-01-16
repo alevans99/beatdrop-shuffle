@@ -1,15 +1,53 @@
-.scores-list-container {
+.scores-main-container {
     padding: 20px;
 }
 
+.scores-type-container {
+    display: flex;
+    padding: 0 4px;
+}
+
+.type-tab {
+    background-color: #ffffff;
+    color: #fc1681;
+    height: 50px;
+    border-radius: 0.5rem 0.5rem 0 0;
+    width: 100px;
+    font-size: 1.2rem;
+    border: none;
+}
+
+.disabled-tab {
+    background-color: #e6e6e6;
+    color: #fc16816c;
+    height: 50px;
+    border-radius: 0.5rem 0.5rem 0 0;
+    width: 100px;
+    font-size: 1.2rem;
+    border: none;
+}
+
+.disabled-tab:hover {
+    background-color: #dadada;
+    color: #fc1681;
+    height: 50px;
+    border-radius: 0.5rem 0.5rem 0 0;
+    width: 100px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+
+
+}
+
 .scores-headings-container {
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 80px;
+    grid-template-rows: auto;
     justify-items: center;
     align-items: center;
-    border: #fc1681 1px solid;
-    border-radius: 0.5rem;
+    border-radius: 0 0.5rem 0 0;
     padding: 0.4em;
     color: #fc1681;
     text-shadow:
@@ -22,8 +60,17 @@
         0 0 102px #fc1681,
         0 0 151px #fc1681;
     background-color: #ffffff;
-    margin: 4px;
+    margin: 0 4px;
 
+}
+
+.scores-headings-container h4 {
+    margin: 10px;
+
+}
+
+.score-list-item h5 {
+    margin: 10px;
 }
 
 .score-list-item {
@@ -31,12 +78,18 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     justify-items: center;
-    border: #fc1681 1px solid;
-    margin: 4px;
-    border-radius: 0.5rem;
+    border-top: #fc1681 1px solid;
+    margin: 0 4px;
     padding: 0.4em;
     color: #fc1681;
     background-color: rgb(255, 255, 255);
+}
+
+
+
+.score-items-container .score-list-item:last-child {
+    border-radius: 0 0 0.5rem 0.5rem;
+
 }
 
 .tab-fade-in {
@@ -80,4 +133,35 @@
 
 .hide-score-container {
     display: none;
+}
+
+.scores-level-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 20px;
+
+}
+
+.scores-level {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.4em;
+    color: #fc1681;
+    border: #fc1681 1px solid;
+    background-color: #ffffff;
+}
+
+.scores-level:hover {
+    background-color: #fc1681;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.text-slide-in {
+    transition: opacity 2s
 }

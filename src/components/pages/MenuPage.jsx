@@ -21,12 +21,7 @@ function MenuPage() {
         }}>
           <MenuImageButton buttonText={'Leaderboard'} buttonImage={ProgressImage}/>
         </div>
-        <div className='menu-progress-container'>
-          <MenuImageButton buttonText={'Progress'} buttonImage={ProgressImage}/>
-        </div>
-        <div className='menu-help-container'>
-          <MenuImageButton buttonText={'Guide'} buttonImage={ProgressImage}/>
-        </div>
+
 
       </div>
     </div>
