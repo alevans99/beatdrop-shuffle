@@ -41,7 +41,6 @@ function LeaderboardsPage() {
 
 
   const handleTypeFadeAnimationEnd = (t) => {
-    console.log('Handing animation end' , t.animationName)
     if (t.animationName === 'tab-fade-out'){
       //Remove whole container
       scoreItemsContainerRef.current.classList.add('hide-element')
@@ -58,28 +57,14 @@ function LeaderboardsPage() {
     }
 
     if (t.animationName === 'level-fade-out'){
-      // //hide all the level elements while the score changes
-      // scoreItemRefs.current.forEach((item) => {
-      //   item.classList.add('hide-element')
-      // })
       scoreItemsContainerRef.current.classList.add('hide-element')
       setLevel(newLevelChoice.current)
       scoreItemsContainerRef.current.classList.remove('level-fade-out')
       scoreItemsContainerRef.current.classList.add('level-fade-in')
       scoreItemsContainerRef.current.classList.remove('hide-element')
 
-
-      // scoreItemRefs.current.forEach((item) => {
-      //   item.classList.remove('hide-element')
-
-      //   item.classList.add('level-fade-in')
-      //   item.classList.remove('level-fade-out')
-      // })
     }
-    if (t.animationName === 'level-fade-in'){
-      // scoreItemRefs.current.forEach((item) => {
-      //   item.classList.remove('level-fade-in')
-      // })   
+    if (t.animationName === 'level-fade-in'){ 
       scoreItemsContainerRef.current.classList.remove('level-fade-in')
 
     }
@@ -144,7 +129,6 @@ function LeaderboardsPage() {
                   <h5>{scoreItem.user}</h5>
                   <h5>{DateTime.fromISO(scoreItem.timestamp).toLocaleString(DateTime.DATETIME_FULL)}</h5>
                 </div>     
-                
               )
             })}
           </div>
