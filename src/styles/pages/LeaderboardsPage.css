@@ -50,15 +50,7 @@
     border-radius: 0 0.5rem 0 0;
     padding: 0.4em;
     color: #fc1681;
-    text-shadow:
-        0 0 7px #fff,
-        0 0 10px #fff,
-        0 0 21px #fff,
-        0 0 42px #fc1681,
-        0 0 82px #fc1681,
-        0 0 92px #fc1681,
-        0 0 102px #fc1681,
-        0 0 151px #fc1681;
+
     background-color: #ffffff;
     margin: 0 4px;
 
@@ -73,6 +65,7 @@
     margin: 10px;
 }
 
+
 .score-list-item {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -83,8 +76,8 @@
     padding: 0.4em;
     color: #fc1681;
     background-color: rgb(255, 255, 255);
-}
 
+}
 
 
 .score-items-container .score-list-item:last-child {
@@ -93,12 +86,49 @@
 }
 
 .tab-fade-in {
-    animation: tab-fade-in 1000ms;
+    animation: tab-fade-in 600ms;
 }
 
 .tab-fade-out {
     animation: tab-fade-out 600ms;
 }
+
+.level-fade-in {
+    animation: level-fade-in 600ms;
+}
+
+.level-fade-out {
+    animation: level-fade-out 600ms;
+}
+
+
+@keyframes level-fade-out {
+    from {
+        opacity: 1;
+
+
+    }
+
+    to {
+        opacity: 0;
+
+
+    }
+}
+
+@keyframes level-fade-in {
+    from {
+        opacity: 0;
+
+    }
+
+    to {
+        opacity: 1;
+
+
+    }
+}
+
 
 @keyframes tab-fade-out {
     from {
@@ -126,12 +156,19 @@
     }
 }
 
+
+
 .user-record {
     background-color: #FFDD1B;
 
 }
 
-.hide-score-container {
+.scores-level-container .selected-level-button {
+    background-color: #fc1681;
+    color: #ffffff;
+}
+
+.hide-element {
     display: none;
 }
 
