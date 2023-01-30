@@ -15,7 +15,6 @@ function LevelSelectButton({buttonText, buttonImage, locked, levelNumber}) {
       return hoverState
     })
   } 
-
   return (
     <div className={`level-select-${levelNumber} LevelSelectButton`}  onClick={() => {
       selectLevel(levelNumber)
