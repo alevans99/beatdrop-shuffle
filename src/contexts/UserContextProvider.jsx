@@ -4,7 +4,7 @@ import  blankScores from './default-values/defaultScores'
 const UserContext = React.createContext()
 import { DateTime } from 'luxon'
 import { v4 as uuidv4 } from 'uuid'
-
+import blankUserProgress from './default-values/userProgress'
 export function useUserContext() {
   return useContext(UserContext)
 }
@@ -14,6 +14,7 @@ export function UserContextProvider({ children }) {
   const [username, setUsername] = useState(null)
   const [scoreId, setScoreId] = useState(null)
   const [userScores, setUserScores] = useState(null)
+  const [userProgress, setUserProgress] = useState(blankUserProgress)
 
   function updateUsername(newUsername) {
     localStorage.setItem('username', newUsername)
@@ -24,6 +25,23 @@ export function UserContextProvider({ children }) {
     localStorage.setItem('userScores', JSON.stringify(newScores))
     setUserScores(newScores)
   }
+
+  /**
+   * On score changes, check user progress to see which levels are unlocked
+   */
+  useEffect(() => {
+    if (userScores){
+      const newProgress = {}
+      Object.keys(userScores).forEach((key) => {
+        newProgress[key] = {
+          gold: userScores[key][1].score >= 90000,
+          silver: userScores[key][1].score >= 80000,
+          bronze: userScores[key][1].score >= 70000,
+        }
+      })
+      setUserProgress(newProgress)
+    }
+  }, [userScores])
 
   /**
    * Checks to see if the user has a new high score
@@ -99,7 +117,7 @@ export function UserContextProvider({ children }) {
   }, [])
   
   return (
-    <UserContext.Provider value={{ username, updateUsername, userScores, updateUserScores, checkNewUserScore, scoreId}}>
+    <UserContext.Provider value={{ username, updateUsername, userScores, updateUserScores, checkNewUserScore, scoreId, userProgress}}>
       {children}
     </UserContext.Provider>
   )
